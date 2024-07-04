@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import AppContextProvider from "@/components/AppContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className='dark font-mono'>{children}</body>
+      <body className='dark font-mono'>
+      <AppContextProvider>
+        {children}
+      </AppContextProvider>
+      </body>
     </html>
   );
 }

@@ -16,7 +16,7 @@ export default function Main({counter}: Props) {
 
 
 // 可以这样但是不好阅读
-// export default function Main({counter}: { counter: number }) {
+// export default function Index({counter}: { counter: number }) {
 //     return (
 //         <main>
 //             <div className='bg-blue-300 m-10 p-10'>
@@ -26,7 +26,7 @@ export default function Main({counter}: Props) {
 //     )
 // }
 
-// export default function Main(props: Props) {
+// export default function Index(props: Props) {
 //     return (
 //         <main>
 //             <div className='bg-blue-300 m-10 p-10'>

@@ -1,7 +1,7 @@
 "use client"
 
-import Navigation from "@/components/home/Navigation";
-import Main from "@/components/home/Main";
+import Navigation from "@/components/home/Index";
+import Main from "@/components/home/Index";
 import {useState} from "react";
 
 export default function Home() {
