@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className='dark font-mono'>
+      <body className='font-mono'>
       <AppContextProvider>
         {children}
       </AppContextProvider>
