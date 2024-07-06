@@ -9,3 +9,8 @@ export interface Message {
     role: "user" | "assistant" // user or server message
     content: string // message
 }
+
+export interface MessageRequestPayload {
+    messages: Message[]
+    model: string
+}
