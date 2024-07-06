@@ -49,7 +49,9 @@ export async function POST(request: NextRequest) {
                         console.log('Content block started');
                         break;
                     case 'content_block_delta':
+                        // @ts-ignore
                         if (messageStreamEvent.delta && messageStreamEvent.delta.text) {
+                            // @ts-ignore
                             controller.enqueue(encoder.encode(messageStreamEvent.delta.text))
                         }
                         break;
@@ -57,7 +59,9 @@ export async function POST(request: NextRequest) {
                         console.log('Content block finished');
                         break;
                     case 'message_delta':
+                        // @ts-ignore
                         if (messageStreamEvent.delta && messageStreamEvent.delta.text) {
+                            // @ts-ignore
                             controller.enqueue(encoder.encode(messageStreamEvent.delta.text))
                         }
                         break;

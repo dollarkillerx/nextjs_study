@@ -79,6 +79,7 @@ export default function ChatInput() {
         setMessage('')
         setStart(false)
     }
+    // @ts-ignore
     return (
         <div
             className='absolute bottom-0 inset-x-0 bg-gradient-to-b from-[rgba(255,255,255,0)] from-[13.94%] to-[#fff] to-[54.73%] pt-10 dark:from-[rgba(53,55,64,0)] dark:to-[#353740] dark:to-[58.85%]'>
@@ -89,7 +90,7 @@ export default function ChatInput() {
                     <TextareaAutoSize className={`flex-1 max-h-64 mb-1.5 bg-transparent text-black dark:text-white resize-none bottom-0 outline-none`} placeholder='请输入...' rows={1}
                         value={message} onChange={(e)=>{setMessage(e.target.value)}}
                     />
-                    <Button icon={FiSend} className={`mx-3 !rounded-lg`} disabled={message == '' || start} variant={`${(message != '' && !start )&& 'primary'}`} onClick={sendMessage}></Button>
+                    <Button icon={FiSend} className={`mx-3 !rounded-lg`} disabled={message == '' || start} variant={(message !== '' && !start) ? 'primary' : undefined}  onClick={sendMessage}></Button>
                 </div>
                 <footer className={`text-center text-sm text-gray-700 dark:text-gray-300 px-4 pb-6`}>
                     ©{new Date().getFullYear()}&nbsp; <a className={`font-medium px-[1px] border-b border-dotted border-black/60 hover:cursor-pointer hover:border-black/0 dark:border-gray-200 dark:hidden:border-gray-200`} href="https://github.com/dollarkillerx" target="_blank">由 Github Dollarkillerx 提供动力</a>
