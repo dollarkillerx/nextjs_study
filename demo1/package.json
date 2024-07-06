@@ -9,11 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-syntax-highlighter": "^15.5.13",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
-    "react-textarea-autosize": "^8.5.3"
+    "react-markdown": "^9.0.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "react-textarea-autosize": "^8.5.3",
+    "remark-gfm": "^4.0.0"
   },
   "devDependencies": {
     "typescript": "^5",

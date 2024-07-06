@@ -16,8 +16,7 @@ export default function ChatInput() {
                     <Button icon={FiSend} className={`mx-3 !rounded-lg`} variant='primary'></Button>
                 </div>
                 <footer className={`text-center text-sm text-gray-700 dark:text-gray-300 px-4 pb-6`}>
-                    ©{new Date().getFullYear()}&nbsp; <a className={`font-medium px-[1px] border-b border-dotted border-black/60 hover:cursor-pointer hover:border-black/0 dark:border-gray-200 dark:hidden:border-gray-200`} href="https://github.com/dollarkillerx" target="_blank">Github Dollarkillerx</a>
-
+                    ©{new Date().getFullYear()}&nbsp; <a className={`font-medium px-[1px] border-b border-dotted border-black/60 hover:cursor-pointer hover:border-black/0 dark:border-gray-200 dark:hidden:border-gray-200`} href="https://github.com/dollarkillerx" target="_blank">由 Github Dollarkillerx 提供动力</a>
                 </footer>
             </div>
         </div>
