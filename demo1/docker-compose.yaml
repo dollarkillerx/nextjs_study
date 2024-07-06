@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  chat_bot:
+    image: harbor.dollarkiller.com/library/chat_bot:1.0.0
+    container_name: chat_bot
+    restart: always
+    ports:
+      - "9888:3000"
+#    volumes:
+#      - ./configs/:/app/configs
