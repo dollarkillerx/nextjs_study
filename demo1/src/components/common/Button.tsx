@@ -11,7 +11,7 @@ export default function Button(
 {
     return (
         <button
-            className={`inline-flex items-center min-w-[38px] min-h-[38px] rounded px-3 py-1.5
+            className={`transition-colors inline-flex items-center min-w-[38px] min-h-[38px] rounded px-3 py-1.5
             ${variant === "default" && "text-black dark:text-gray-300 bg-gray-50 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-900"}
             ${variant === "outline" && "border border-gray-300 dark:border-gray-600 text-black dark:text-gray-300 bg-gray-50 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"}
             ${variant === "text" && "text-black dark:text-gray-300 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700"}

@@ -11,11 +11,13 @@ import {ActionType} from "@/components/reducers/AppReducer";
 
 export default function ChatInput() {
     const [message, setMessage] = useState('')
-    const {state:{messageList, currentModel}, dispatch} = useAppContext()
+    const {state:{messageList, currentModel, streamingId}, dispatch} = useAppContext()
+    const [start, setStart] = useState(false)
     const sendMessage = async() => {
         if (message.trim() === '') {
             return
         }
+        setStart(true)
 
         const sendMessage: Message = {
             id: nanoid(),
@@ -41,11 +43,13 @@ export default function ChatInput() {
 
         if (!response.ok) {
             console.log(response.statusText)
+            setStart(false)
             return
         }
 
         if (!response.body) {
             console.log('response.body is null')
+            setStart(false)
             return
         }
 
@@ -54,7 +58,9 @@ export default function ChatInput() {
             role: 'assistant',
             content: ''
         }
+
         dispatch({type: ActionType.ADD_MESSAGE, message: responseMessage})
+        dispatch({type: ActionType.UPDATE, field: 'streamingId', value: responseMessage.id})
         const reader = response.body.getReader()
         const decoder = new TextDecoder()
         let done = false
@@ -69,7 +75,9 @@ export default function ChatInput() {
             }
         }
 
+        dispatch({type: ActionType.UPDATE, field: 'streamingId', value: ""})
         setMessage('')
+        setStart(false)
     }
     return (
         <div
@@ -81,7 +89,7 @@ export default function ChatInput() {
                     <TextareaAutoSize className={`flex-1 max-h-64 mb-1.5 bg-transparent text-black dark:text-white resize-none bottom-0 outline-none`} placeholder='请输入...' rows={1}
                         value={message} onChange={(e)=>{setMessage(e.target.value)}}
                     />
-                    <Button icon={FiSend} className={`mx-3 !rounded-lg`} variant='primary' onClick={sendMessage}></Button>
+                    <Button icon={FiSend} className={`mx-3 !rounded-lg`} disabled={message == '' || start} variant={`${(message != '' && !start )&& 'primary'}`} onClick={sendMessage}></Button>
                 </div>
                 <footer className={`text-center text-sm text-gray-700 dark:text-gray-300 px-4 pb-6`}>
                     ©{new Date().getFullYear()}&nbsp; <a className={`font-medium px-[1px] border-b border-dotted border-black/60 hover:cursor-pointer hover:border-black/0 dark:border-gray-200 dark:hidden:border-gray-200`} href="https://github.com/dollarkillerx" target="_blank">由 Github Dollarkillerx 提供动力</a>

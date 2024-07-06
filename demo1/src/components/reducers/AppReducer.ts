@@ -7,15 +7,14 @@ export type State = {
     themeMode: "dark" | "light"
     currentModel: string
     messageList: Message[]
+    streamingId: string // 正在回复消息的id
 }
 
 export enum ActionType {
     UPDATE = "UPDATE",
     ADD_MESSAGE = "ADD_MESSAGE",
     UPDATE_MESSAGE = "UPDATE_MESSAGE"
-
 }
-
 // 定义更新操作
 type UpdateAction = {
     type: ActionType.UPDATE
@@ -36,7 +35,8 @@ export const initState: State = {
     displayNavigation: true,
     themeMode: "dark",
     currentModel: "Claude3.5 Sonnet",
-    messageList: []
+    messageList: [],
+    streamingId: ""
 }
 
 // 定义基础类型 end

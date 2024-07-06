@@ -3,7 +3,7 @@ import Markdown from "@/components/common/Markdown";
 import {useAppContext} from "@/components/AppContext";
 
 export default function MessageList() {
-    const {state: {messageList}} =  useAppContext()
+    const {state: {messageList,streamingId}} =  useAppContext()
 
     return <div className={`w-full pt-10 pb-48 dark:text-gray-300`}>
         <ul>
@@ -18,7 +18,7 @@ export default function MessageList() {
                             {isUser ? "🙂" : <GoHubot/>}
                         </div>
                         <div className={`flex-1`}>
-                           <Markdown>{message.content}</Markdown>
+                           <Markdown>{`${message.content} ${streamingId === message.id ? "▍" : ""}`}</Markdown>
                         </div>
                     </div>
                 </li>
