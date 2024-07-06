@@ -3,6 +3,7 @@
 export type State = {
     displayNavigation: boolean
     themeMode: "dark" | "light"
+    currentModel: string
 }
 
 export enum ActionType {
@@ -22,7 +23,8 @@ export type Action = UpdateAction
 // 默认的
 export const initState: State = {
     displayNavigation: true,
-    themeMode: "dark"
+    themeMode: "dark",
+    currentModel: "Claude3.5 Sonnet"
 }
 
 // 定义基础类型 end
