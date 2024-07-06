@@ -1,6 +1,7 @@
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import {Chat} from "@/types/chat";
-import {PiChatBold} from "react-icons/pi";
+import {groupByDate} from "@/common/util";
+import ChatItem from "@/components/home/Navigation/ChatItem";
 
 export default function ChatList(){
     const [chatList,setChantList] = useState<Chat[]>([
@@ -78,28 +79,36 @@ export default function ChatList(){
 
     const [selectedChat,setSelectedChat] = useState<Chat>()
 
+    // 计算分组 使用 useMemo 当分组数据有变动时才改变分组列表
+    const groupList = useMemo(()=>{
+        return groupByDate(chatList)
+    },[chatList])
     return (
-        <div className='flex-1 mt-2 flex flex-col'>
-          <ul>
-              {
-                  chatList.map((chat)=>{
-                      const selected = selectedChat?.id === chat.id
+        <div className='flex-1 mt-2 flex flex-col overflow-y-auto mb-[48px]'>
+            {
+                groupList.map(([data,list])=>{
+                    return (
+                        <div key={data}>
+                            <div className='sticky top-0 z-10 p-3 text-sm bg-gray-900 text-gray-500'>
+                                {data}
+                            </div>
+                            <ul>
+                                {
+                                    list.map((chat)=>{
+                                        const selected = selectedChat?.id === chat.id
+                                        return (
+                                            <ChatItem key={chat.id} item={chat} selected={selected} onSelected={(chat)=>{
+                                                setSelectedChat(chat)
+                                            }}/>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </div>
+                    )
+                })
+            }
 
-                      return (
-                          <li onClick={()=>{
-                              setSelectedChat(chat)
-                          }} key={chat.id} className={`group flex items-center p-2 space-x-3 cursor-pointer rounded-md hover:bg-gray-800
-                              ${selected ? "bg-gray-800" : "" }`}>
-                              <div><PiChatBold></PiChatBold></div>
-                              <div className='relative flex-1 whitespace-nowrap overflow-hidden'>
-                                  {chat.title}
-                                  <span className={`group-hover:from-gray-800 absolute right-0 inset-y-0 w-8 from-gray-900 bg-gradient-to-l ${selected ? "" : "from-gray-800"}`}></span>
-                              </div>
-                          </li>
-                      )
-                  })
-              }
-          </ul>
         </div>
     )
 }
